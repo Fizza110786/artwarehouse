@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-// ✅ IMPORT IMAGES (jpg, not jpeg)
+
 import open7days from "../assets/open7days.jpg";
 import licensed from "../assets/licensed.jpg";
 import satisfaction from "../assets/satisfaction.jpg";
