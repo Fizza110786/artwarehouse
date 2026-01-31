@@ -12,7 +12,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import BuildIcon from "@mui/icons-material/Build";
 
-// ✅ IMPORT IMAGES
+
 import distributionImg from "../assets/distribution.jpg";
 import customsImg from "../assets/customs.jpg";
 import transportImg from "../assets/transport.jpg";
