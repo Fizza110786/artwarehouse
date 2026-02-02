@@ -89,7 +89,6 @@ export default function Gallery() {
           margin-bottom: 60px;
         }
 
-        /* Masonry Layout */
         .masonry {
           column-count: 4;
           column-gap: 22px;
@@ -122,7 +121,6 @@ export default function Gallery() {
           transform: scale(1.05);
         }
 
-        /* Hover Overlay */
         .hover-overlay {
           position: absolute;
           inset: 0;
@@ -138,7 +136,6 @@ export default function Gallery() {
           color: white;
           font-size: 20px;
           font-weight: 700;
-          letter-spacing: 1px;
           background: rgba(255,255,255,0.15);
           padding: 10px 28px;
           border-radius: 30px;
@@ -163,7 +160,6 @@ export default function Gallery() {
           color: ${colors.primary};
         }
 
-        /* Modal */
         .modal {
           position: fixed;
           inset: 0;
@@ -178,7 +174,6 @@ export default function Gallery() {
           max-width: 90%;
           max-height: 90%;
           border-radius: 14px;
-          box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
 
         .close {

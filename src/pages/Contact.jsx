@@ -29,7 +29,7 @@ export default function Contact() {
           boxShadow: "0 18px 50px rgba(0,0,0,0.1)",
         }}
       >
-        {/* Left Side */}
+        {/* LEFT */}
         <div>
           <h2
             style={{
@@ -48,35 +48,49 @@ export default function Contact() {
           </p>
 
           <div style={{ marginBottom: "16px", fontSize: "15px" }}>
-            📍 <span>Chennai, India</span>
+            📍 Chennai, India
           </div>
           <div style={{ marginBottom: "16px", fontSize: "15px" }}>
-            📞 <span>+91 9940663288</span>
+            📞 +91 9940663288
           </div>
           <div style={{ marginBottom: "16px", fontSize: "15px" }}>
-            ✉ <span>info@artwarehouse.com</span>
+            ✉ info@artwarehouse.com
           </div>
         </div>
 
-        {/* Right Side */}
-        <form style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        {/* RIGHT */}
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            alert("Message sent successfully!");
+          }}
+          style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+        >
           <input
             type="text"
             placeholder="Your Name"
             required
             style={inputStyle}
+            onFocus={(e) => (e.target.style.border = `1px solid ${colors.accent}`)}
+            onBlur={(e) => (e.target.style.border = "1px solid #e5e7eb")}
           />
+
           <input
             type="email"
             placeholder="Your Email"
             required
             style={inputStyle}
+            onFocus={(e) => (e.target.style.border = `1px solid ${colors.accent}`)}
+            onBlur={(e) => (e.target.style.border = "1px solid #e5e7eb")}
           />
+
           <textarea
             placeholder="Your Message"
             rows="5"
             required
             style={{ ...inputStyle, resize: "none" }}
+            onFocus={(e) => (e.target.style.border = `1px solid ${colors.accent}`)}
+            onBlur={(e) => (e.target.style.border = "1px solid #e5e7eb")}
           />
 
           <button
@@ -93,24 +107,24 @@ export default function Contact() {
               cursor: "pointer",
               transition: "0.3s",
             }}
-            onMouseOver={(e) =>
-              (e.target.style.background = "#e11d48")
-            }
-            onMouseOut={(e) =>
-              (e.target.style.background = colors.accent)
-            }
+            onMouseOver={(e) => (e.target.style.background = "#e11d48")}
+            onMouseOut={(e) => (e.target.style.background = colors.accent)}
           >
             Send Message
           </button>
         </form>
       </div>
 
-      {/* Responsive */}
+      {/* MOBILE */}
       <style>{`
         @media (max-width: 900px) {
           div[style*="gridTemplateColumns"] {
             grid-template-columns: 1fr !important;
             padding: 40px !important;
+          }
+
+          h1 {
+            font-size: 32px !important;
           }
         }
       `}</style>
@@ -124,4 +138,5 @@ const inputStyle = {
   border: "1px solid #e5e7eb",
   fontSize: "14px",
   outline: "none",
+  transition: "0.2s",
 };

@@ -62,13 +62,13 @@ const team = [
 
 export default function Team() {
   return (
-    <div style={{ padding: "90px 20px", background: colors.section }}>
+    <div style={{ padding: "110px 20px", background: colors.section }}>
       <div style={{ maxWidth: "1300px", margin: "0 auto" }}>
         <h2
           style={{
             textAlign: "center",
-            marginBottom: "60px",
-            fontSize: "40px",
+            marginBottom: "70px",
+            fontSize: "42px",
             fontWeight: "800",
             color: colors.darkText,
           }}
@@ -81,7 +81,7 @@ export default function Team() {
             <div key={i} className="team-card">
               <img src={m.img} alt={m.name} />
 
-              {/* Always visible */}
+              {/* Bottom strip */}
               <div className="team-basic">
                 <h3>{m.name}</h3>
                 <p>{m.role}</p>
@@ -110,17 +110,23 @@ export default function Team() {
           .team-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
+            gap: 34px;
           }
 
           .team-card {
             position: relative;
-            height: 420px;
-            border-radius: 18px;
+            height: 430px;
+            border-radius: 22px;
             overflow: hidden;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+            box-shadow: 0 14px 32px rgba(0,0,0,0.14);
             cursor: pointer;
-            background: ${colors.white};
+            background: white;
+            transition: 0.35s;
+          }
+
+          .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 50px rgba(30,58,138,0.25);
           }
 
           .team-card img {
@@ -130,14 +136,18 @@ export default function Team() {
             transition: 0.4s;
           }
 
+          .team-card:hover img {
+            transform: scale(1.06);
+          }
+
           .team-basic {
             position: absolute;
             bottom: 0;
             width: 100%;
-            padding: 18px;
+            padding: 18px 20px;
             background: linear-gradient(
               to top,
-              rgba(0,0,0,0.75),
+              rgba(0,0,0,0.8),
               transparent
             );
             color: white;
@@ -153,12 +163,13 @@ export default function Team() {
           .team-basic p {
             margin: 0;
             font-size: 14px;
+            color: #ddd;
           }
 
           .team-hover {
             position: absolute;
             inset: 0;
-            background: rgba(30,58,138,0.7);
+            background: rgba(30,58,138,0.78);
             color: white;
             padding: 30px;
             opacity: 0;
@@ -171,10 +182,6 @@ export default function Team() {
 
           .team-card:hover .team-hover {
             opacity: 1;
-          }
-
-          .team-card:hover img {
-            transform: scale(1.05);
           }
 
           .team-hover h3 {
@@ -191,6 +198,7 @@ export default function Team() {
 
           .team-hover .bio {
             font-size: 14px;
+            line-height: 1.6;
             margin-bottom: 18px;
           }
 
@@ -202,11 +210,12 @@ export default function Team() {
 
           .team-icons a {
             color: white;
-            transition: 0.2s;
+            transition: 0.25s;
           }
 
           .team-icons a:hover {
             color: ${colors.accent};
+            transform: scale(1.2);
           }
 
           @media (max-width: 900px) {

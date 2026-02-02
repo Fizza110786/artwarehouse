@@ -55,9 +55,7 @@ export default function Clients() {
         <div className="partners-grid">
           {partners.map((p, i) => (
             <div key={i} className="partner-card">
-              <div className="partner-logo">
-                {p.name[0]}
-              </div>
+              <div className="partner-logo">{p.name[0]}</div>
               <h3>{p.name}</h3>
               <p>{p.desc}</p>
             </div>
@@ -85,7 +83,6 @@ export default function Clients() {
         </div>
       </div>
 
-      {/* Styles */}
       <style>{`
         .section-title {
           text-align: center;
@@ -159,7 +156,11 @@ export default function Clients() {
           border-radius: 20px;
           background: white;
           box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-          position: relative;
+          transition: 0.3s;
+        }
+
+        .test-card:hover {
+          transform: translateY(-10px);
         }
 
         .quote-icon {
@@ -194,10 +195,15 @@ export default function Clients() {
           color: ${colors.accent};
         }
 
+        /* Mobile */
         @media (max-width: 900px) {
           .partners-grid,
           .test-grid {
             grid-template-columns: 1fr;
+          }
+
+          .test-card {
+            padding: 28px;
           }
         }
       `}</style>

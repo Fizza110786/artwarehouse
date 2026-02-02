@@ -2,6 +2,7 @@ import { Box, Typography, Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import warehouseImg from "../assets/warehouse.jpg";
 import aboutImg from "../assets/about.jpg";
+import { colors } from "../theme";
 
 export default function Home() {
   return (
@@ -10,15 +11,15 @@ export default function Home() {
       {/* ================= HERO ================= */}
       <Box
         sx={{
-          height: "90vh",
+          height: { xs: "85vh", md: "90vh" },
           backgroundImage: `url(${warehouseImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed",
+          backgroundAttachment: { xs: "scroll", md: "fixed" },
           display: "flex",
           alignItems: "center",
-          paddingLeft: { xs: "30px", md: "80px" },
-          color: "#fff",
+          px: { xs: 3, md: 10 },
+          color: "white",
           position: "relative"
         }}
       >
@@ -27,7 +28,7 @@ export default function Home() {
           sx={{
             position: "absolute",
             inset: 0,
-            backgroundColor: "rgba(0,0,0,0.55)"
+            backgroundColor: "rgba(0,0,0,0.6)"
           }}
         />
 
@@ -39,7 +40,7 @@ export default function Home() {
             ART WAREHOUSE
           </Typography>
 
-          <Typography mb={3} color="white">
+          <Typography mb={3} color="white" fontSize="18px">
             Quality. Efficiency. Support.
           </Typography>
 
@@ -47,7 +48,14 @@ export default function Home() {
             component={Link}
             to="/about"
             variant="contained"
-            sx={{ bgcolor: "#e91e63", mr: 2 }}
+            sx={{
+              bgcolor: colors.accent,
+              mr: 2,
+              px: 4,
+              py: 1.2,
+              borderRadius: "30px",
+              "&:hover": { bgcolor: "#e11d48" }
+            }}
           >
             About Us
           </Button>
@@ -59,6 +67,9 @@ export default function Home() {
             sx={{
               color: "#fff",
               borderColor: "#fff",
+              px: 4,
+              py: 1.2,
+              borderRadius: "30px",
               "&:hover": {
                 bgcolor: "rgba(255,255,255,0.15)"
               }
@@ -74,7 +85,7 @@ export default function Home() {
         sx={{
           py: 12,
           px: 4,
-          background: "linear-gradient(135deg, #fffdf7, #f3f6ff)"
+          background: colors.section
         }}
       >
         <Box
@@ -102,12 +113,7 @@ export default function Home() {
           </Box>
 
           <Box>
-            <Typography
-              variant="h4"
-              fontWeight={800}
-              color="#e91e63"
-              mb={1}
-            >
+            <Typography variant="h4" fontWeight={800} color={colors.accent} mb={1}>
               ALL ABOUT ARTWAREHOUSE
             </Typography>
 
@@ -115,13 +121,13 @@ export default function Home() {
               Professionalism. Excellence. Timeliness.
             </Typography>
 
-            <Typography color="#444" lineHeight={1.8} mb={2}>
+            <Typography color={colors.darkText} lineHeight={1.8} mb={2}>
               Fast, efficient, and honest, ARTWAREHOUSE has become a reputable
               and well-known warehouse service. Our team is up for every job,
               managing projects with the skill and experience our clients expect.
             </Typography>
 
-            <Typography color="#444" lineHeight={1.8} mb={3}>
+            <Typography color={colors.darkText} lineHeight={1.8} mb={3}>
               We provide open communication channels throughout the duration
               of each project and focus on long-term partnerships.
             </Typography>
@@ -130,7 +136,13 @@ export default function Home() {
               component={Link}
               to="/about"
               variant="contained"
-              sx={{ bgcolor: "#2f3b78" }}
+              sx={{
+                bgcolor: colors.primary,
+                px: 4,
+                py: 1.2,
+                borderRadius: "30px",
+                "&:hover": { bgcolor: "#1e3a8a" }
+              }}
             >
               Learn More
             </Button>
@@ -144,29 +156,23 @@ export default function Home() {
           display: "grid",
           gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
           gap: 6,
-          px: 6,
+          px: { xs: 3, md: 6 },
           py: 10,
-          background: "#fffdf5"
+          background: "#fff"
         }}
       >
         <Box>
-          <Typography variant="h5" color="#e91e63" mb={2}>
+          <Typography variant="h5" color={colors.accent} mb={2}>
             GET IN TOUCH
           </Typography>
 
-          <Typography mb={2}>
+          <Typography mb={2} color={colors.mutedText}>
             Questions, comments or requests? Feel free to reach out.
           </Typography>
 
-          <Typography mb={1}>
-            📍 40, 3rd Avenue, Future Business Park, Karapakkam, Chennai
-          </Typography>
-          <Typography mb={1}>
-            📧 admin@artwarehouse.in
-          </Typography>
-          <Typography mb={1}>
-            📞 +91 99 40 66 32 88
-          </Typography>
+          <Typography mb={1}>📍 Chennai, India</Typography>
+          <Typography mb={1}>📧 admin@artwarehouse.in</Typography>
+          <Typography mb={1}>📞 +91 99 40 66 32 88</Typography>
         </Box>
 
         <Box>
@@ -176,17 +182,17 @@ export default function Home() {
           <TextField fullWidth label="Organization Name" margin="dense" />
           <TextField fullWidth label="Location" margin="dense" />
           <TextField fullWidth label="Subject" margin="dense" />
-          <TextField
-            fullWidth
-            label="Message"
-            multiline
-            rows={4}
-            margin="dense"
-          />
+          <TextField fullWidth label="Message" multiline rows={4} margin="dense" />
 
           <Button
             variant="contained"
-            sx={{ mt: 2, bgcolor: "#2f3b78" }}
+            sx={{
+              mt: 2,
+              bgcolor: colors.primary,
+              px: 4,
+              py: 1.2,
+              borderRadius: "30px"
+            }}
           >
             Submit
           </Button>

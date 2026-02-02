@@ -35,14 +35,14 @@ export default function Services() {
   ];
 
   return (
-    <div style={{ padding: "100px 20px", background: colors.section }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+    <div style={{ padding: "110px 20px", background: colors.section }}>
+      <div style={{ maxWidth: "1300px", margin: "0 auto" }}>
         <h2 className="section-title">Our Services</h2>
         <p className="section-sub">
           End-to-end warehousing and logistics solutions designed for efficiency
         </p>
 
-        {/* Top Service Cards */}
+        {/* SERVICE CARDS */}
         <div className="services-grid">
           {services.map((s, i) => (
             <div key={i} className="service-card">
@@ -51,35 +51,31 @@ export default function Services() {
               <p>{s.desc}</p>
               <ul>
                 {s.points.map((p, idx) => (
-                  <li key={idx}>• {p}</li>
+                  <li key={idx}>✔ {p}</li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
 
-        {/* Big Image Services */}
+        {/* IMAGE STRIP */}
         <div className="image-services">
-          <div
-            className="img-card"
-            style={{ backgroundImage: `url(${distributionImg})` }}
-          >
-            <span>DISTRIBUTION</span>
-          </div>
-
-          <div
-            className="img-card"
-            style={{ backgroundImage: `url(${customsImg})` }}
-          >
-            <span>CUSTOMS CLEARANCE</span>
-          </div>
-
-          <div
-            className="img-card"
-            style={{ backgroundImage: `url(${transportImg})` }}
-          >
-            <span>TRANSPORTATION</span>
-          </div>
+          {[distributionImg, customsImg, transportImg].map((img, i) => {
+            const labels = [
+              "DISTRIBUTION",
+              "CUSTOMS CLEARANCE",
+              "TRANSPORTATION",
+            ];
+            return (
+              <div
+                key={i}
+                className="img-card"
+                style={{ backgroundImage: `url(${img})` }}
+              >
+                <span>{labels[i]}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -95,52 +91,53 @@ export default function Services() {
         .section-sub {
           text-align: center;
           color: ${colors.mutedText};
-          margin-bottom: 60px;
+          margin-bottom: 70px;
         }
 
         .services-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 30px;
-          margin-bottom: 80px;
+          gap: 32px;
+          margin-bottom: 90px;
         }
 
         .service-card {
-          background: ${colors.white};
-          padding: 40px 30px;
-          border-radius: 18px;
-          box-shadow: 0 10px 28px rgba(0,0,0,0.08);
-          transition: 0.3s;
+          background: white;
+          padding: 42px 30px;
+          border-radius: 20px;
+          box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+          transition: 0.35s;
+          text-align: center;
         }
 
         .service-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 18px 36px rgba(0,0,0,0.15);
+          transform: translateY(-12px);
+          box-shadow: 0 22px 50px rgba(30,58,138,0.2);
         }
 
         .service-icon {
-          width: 60px;
-          height: 60px;
+          width: 64px;
+          height: 64px;
           border-radius: 50%;
           background: ${colors.accent};
           color: white;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 26px;
-          margin-bottom: 20px;
+          font-size: 28px;
+          margin: 0 auto 18px;
         }
 
         .service-card h3 {
           font-size: 20px;
           margin-bottom: 10px;
-          color: ${colors.darkText};
+          color: ${colors.primary};
         }
 
         .service-card p {
           color: ${colors.mutedText};
           font-size: 14px;
-          margin-bottom: 12px;
+          margin-bottom: 14px;
         }
 
         .service-card ul {
@@ -151,13 +148,13 @@ export default function Services() {
           font-size: 14px;
         }
 
-        /* Image Services */
+        /* IMAGE STRIP */
         .image-services {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          height: 320px;
+          height: 340px;
+          border-radius: 22px;
           overflow: hidden;
-          border-radius: 18px;
         }
 
         .img-card {
@@ -182,7 +179,7 @@ export default function Services() {
         }
 
         .img-card:hover {
-          transform: scale(1.05);
+          transform: scale(1.08);
         }
 
         .img-card span {
@@ -190,6 +187,7 @@ export default function Services() {
           z-index: 2;
         }
 
+        /* MOBILE */
         @media (max-width: 900px) {
           .services-grid {
             grid-template-columns: 1fr;

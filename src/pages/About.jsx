@@ -7,10 +7,12 @@ export default function About() {
     <div className="about-page">
       <div className="about-wrapper">
 
+        {/* IMAGE */}
         <div className="about-image">
           <img src={aboutImg} alt="About" />
         </div>
 
+        {/* CONTENT */}
         <div className="about-text">
           <h2>A BIT ABOUT US</h2>
           <h4>Our Background</h4>
@@ -93,13 +95,23 @@ export default function About() {
           font-weight: 500;
         }
 
+        /* ---------- MOBILE ---------- */
         @media (max-width: 900px) {
           .about-wrapper {
             grid-template-columns: 1fr;
+            gap: 40px;
           }
 
           .about-image img {
-            height: 300px;
+            height: 280px;
+          }
+
+          .about-text h2 {
+            font-size: 30px;
+          }
+
+          .about-text h4 {
+            font-size: 16px;
           }
         }
       `}</style>
