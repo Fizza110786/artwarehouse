@@ -1,9 +1,21 @@
-import { AppBar, Toolbar, Typography, Button, Box, IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box,
+  IconButton,
+} from "@mui/material";
+import { Link, useLocation } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { useEffect, useState } from "react";
+import { colors } from "../theme";
 
 export default function Navbar() {
+  const location = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+
   const menuItems = [
     "Home",
     "About",
@@ -11,26 +23,40 @@ export default function Navbar() {
     "Features",
     "Clients",
     "Team",
-    "Gallery"
+    "Gallery",
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
-      {/* TOP LOGO BAR */}
+      {/* TOP BAR */}
       <Box
         sx={{
+          position: "fixed",
+          top: 0,
+          width: "100%",
+          zIndex: 1200,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "15px 60px",
-          bgcolor: "#fff"
+          padding: "14px 60px",
+          bgcolor: "#fff",
+          boxShadow: scrolled ? "0 4px 14px rgba(0,0,0,0.1)" : "none",
+          transition: "0.3s",
         }}
       >
         <Box>
-          <Typography variant="h5" sx={{ fontWeight: 700, color: "#2f3b78" }}>
+          <Typography variant="h6" sx={{ fontWeight: 800, color: colors.primary }}>
             ART WAREHOUSE PRIVATE LIMITED
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" sx={{ color: colors.mutedText }}>
             Quality. Efficiency. Support.
           </Typography>
         </Box>
@@ -39,39 +65,72 @@ export default function Navbar() {
           component={Link}
           to="/contact"
           sx={{
-            bgcolor: "#e91e63",
+            bgcolor: colors.accent,
             color: "#fff",
-            padding: "10px 25px",
+            padding: "10px 26px",
+            borderRadius: "30px",
+            fontWeight: 600,
+            transition: "0.3s",
             "&:hover": {
-              bgcolor: "#d81b60"
-            }
+              bgcolor: "#e11d48",
+            },
           }}
         >
           Get In Touch
         </Button>
       </Box>
 
-      {/* NAVIGATION BAR */}
-      <AppBar position="static" sx={{ bgcolor: "#2f3b78" }}>
+      {/* NAV BAR */}
+      <AppBar
+        position="fixed"
+        sx={{
+          top: "70px",
+          bgcolor: colors.primary,
+          boxShadow: scrolled ? "0 6px 20px rgba(0,0,0,0.2)" : "none",
+          transition: "0.3s",
+        }}
+      >
         <Toolbar sx={{ padding: "0 60px" }}>
-          {menuItems.map(item => (
-            <Button
-              key={item}
-              component={Link}
-              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              sx={{
-                color: "#fff",
-                fontSize: "15px",
-                marginRight: "10px",
-                "&:hover": {
-                  color: "#e91e63",
-                  backgroundColor: "transparent"
-                }
-              }}
-            >
-              {item}
-            </Button>
-          ))}
+          {menuItems.map((item) => {
+            const path = item === "Home" ? "/" : `/${item.toLowerCase()}`;
+            const active = location.pathname === path;
+
+            return (
+              <Button
+                key={item}
+                component={Link}
+                to={path}
+                sx={{
+                  color: active ? colors.accent : "#fff",
+                  fontSize: "15px",
+                  fontWeight: active ? 700 : 500,
+                  marginRight: "14px",
+                  position: "relative",
+                  padding: "6px 10px",
+                  transition: "0.25s",
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    left: 0,
+                    bottom: 2,
+                    width: active ? "100%" : "0%",
+                    height: "2px",
+                    bgcolor: colors.accent,
+                    transition: "0.25s",
+                  },
+                  "&:hover::after": {
+                    width: "100%",
+                  },
+                  "&:hover": {
+                    color: colors.accent,
+                    backgroundColor: "transparent",
+                  },
+                }}
+              >
+                {item}
+              </Button>
+            );
+          })}
 
           <Box sx={{ flexGrow: 1 }} />
 
@@ -83,13 +142,14 @@ export default function Navbar() {
             +91 99 40 66 32 88
           </Typography>
 
-          {/* Social Icons */}
           <IconButton
             href="https://www.facebook.com/wix"
             target="_blank"
             sx={{
               color: "#fff",
-              "&:hover": { color: "#e91e63" }
+              "&:hover": {
+                color: colors.accent,
+              },
             }}
           >
             <FacebookIcon />
@@ -100,13 +160,18 @@ export default function Navbar() {
             target="_blank"
             sx={{
               color: "#fff",
-              "&:hover": { color: "#e91e63" }
+              "&:hover": {
+                color: colors.accent,
+              },
             }}
           >
             <LinkedInIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
+
+      {/* SPACER FOR FIXED NAV */}
+      <Box sx={{ height: "140px" }} />
     </>
   );
 }
